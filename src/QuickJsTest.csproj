@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\external\QuickJS\QuickJS.NET\QuickJS.NET.csproj" />
+    <ProjectReference Include="..\external\QuickJS.NET\QuickJS.NET.csproj" />
   </ItemGroup>
 
 </Project>
