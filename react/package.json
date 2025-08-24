@@ -1,0 +1,22 @@
+{
+  "name": "quickjs-react-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "webpack --config webpack.config.cjs",
+    "build:dev": "webpack --config webpack.config.cjs --mode development --watch",
+    "start": "npm run build && qjs bundle.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "babel-loader": "^10.0.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-reconciler": "^0.28.0"
+  }
+}
