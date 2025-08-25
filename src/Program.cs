@@ -4,7 +4,8 @@ using QuickJS.Native;
 
 var rt = new QuickJSRuntime();
 var cx = rt.CreateContext();
-
+rt.StdInitHandlers();
+rt.SetDefaultModuleLoader();
 cx.StdAddHelpers();
 cx.InitModuleStd("std");
 cx.InitModuleOS("os");
@@ -80,11 +81,22 @@ var global = cx.GetGlobal();
 global.DefineProperty("Person", ctor, JSPropertyFlags.Configurable | JSPropertyFlags.Writable);
 
 jsCode = File.ReadAllText(@"C:\dev\QuickJsTest\react\bundle.js");
-var s = cx.Eval(jsCode, null, JSEvalFlags.Global);
+// jsCode = File.ReadAllText(@"C:\dev\cuo\main\ClassicUO\src\Mods\user-interface\dist\bundle.js");
+var s = cx.Eval(jsCode, null, JSEvalFlags.Module);
+
+
+rt.RunStdLoop(cx);
+
+// global.Dispose();
+// obj.Dispose();
+
+rt.StdFreeHandlers();
+cx.Dispose();
+rt.Dispose();
 Console.WriteLine();
 
 static void CreateFunction(QuickJSContext cx, string name, JSCFunction fn, int argsCount)
 {
-    var val = cx.GetGlobal();
+    using var val = cx.GetGlobal();
     val.DefineFunction(name, fn, argsCount, JSPropertyFlags.Normal);
 }
